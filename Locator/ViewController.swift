@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-
+    var covid_test = false
     let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
@@ -32,6 +32,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func updateDiagnosis(_ sender: Any) {
+        print("You clicked to button")
+        covid_test = true
         
     }
     
