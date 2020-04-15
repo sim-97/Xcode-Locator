@@ -8,14 +8,37 @@ target 'Locator' do
   use_frameworks!
 
   # Pods for Locator
+pod 'Firebase'
+# Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
+
+# Add the pod for Firebase Cloud Messaging
+pod 'Firebase/Messaging'
+pod 'Firebase/Firestore'
+
 
   target 'LocatorTests' do
     inherit! :search_paths
     # Pods for testing
+pod 'Firebase'
+# Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
+pod 'Firebase/Firestore'
+
+# Add the pod for Firebase Cloud Messaging
+pod 'Firebase/Messaging'
+
   end
 
   target 'LocatorUITests' do
     # Pods for testing
-  end
+pod 'Firebase'
+# Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
+
+# Add the pod for Firebase Cloud Messaging
+pod 'Firebase/Messaging'
+pod 'Firebase/Firestore'
+ end
 
 end
