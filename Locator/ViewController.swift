@@ -17,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -29,17 +30,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude)",",","\(locValue.longitude)")
+        let locationstring = String(locValue.latitude)+","+String(locValue.longitude)
+        print(type(of: locationstring), locationstring)
         makePostCall()
     }
             
 
     
     @IBAction func updateDiagnosis(_ sender: Any) {
-        print("You clicked to button")
-        makePutCall()
+        let dialogMessage = UIAlertController(title: "Confirm", message: "Would you like to update your diagnosis to positive?", preferredStyle: .alert)
+        // Create OK button with action handler
+               let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button tapped")
+                self.makePutCall()
+                    
+               })
+               
+               // Create Cancel button with action handlder
+               let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                   print("Cancel button tapped")
+               }
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
+        
     }
     
-    
+    //GET Method
     func makeGetCall() {
       // Set up the URL request
       let todoEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/GeoTrackerController/WelcomeMessage"
@@ -95,7 +115,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       }
       task.resume()
     }
-    
+    //POST Method
     func makePostCall() {
       let todosEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/GeoTrackerController/StoreUseLoction"
       guard let todosURL = URL(string: todosEndpoint) else {
@@ -136,7 +156,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       }
       task.resume()
     }
-    
+    //PUT Call
     func makePutCall() {
       let todosEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/NotificationController/NotifyCorona"
       guard let todosURL = URL(string: todosEndpoint) else {
@@ -146,7 +166,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       var todosUrlRequest = URLRequest(url: todosURL)
       todosUrlRequest.httpMethod = "PUT"
         todosUrlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-type")
-      let newTodo: [String: Any] = ["deviceid":"1234", "hasCorona": 0]
+      let newTodo: [String: Any] = ["deviceid":"1234", "hasCorona": 1]
       let jsonTodo: Data
       do {
         jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
