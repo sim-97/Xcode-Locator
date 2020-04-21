@@ -29,9 +29,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude)",",","\(locValue.longitude)")
+        //print("locations = \(locValue.latitude)",",","\(locValue.longitude)")
         let locationstring = String(locValue.latitude)+","+String(locValue.longitude)
-        print(type(of: locationstring), locationstring)
+        //print(type(of: locationstring), locationstring)
         makePostCall()
     }
             
@@ -98,7 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
           }
           // now we have the todo
           // let's just print it to prove we can access it
-          print("The todo is: " + todo.description)
+         // print("The todo is: " + todo.description)
 
           // the todo object is a dictionary
           // so we just access the title using the "title" key
@@ -130,8 +130,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       do {
         jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
         todosUrlRequest.httpBody = jsonTodo
-        print("JsonTodo")
-        print(String(decoding:jsonTodo, as:UTF8.self))
+       // print("JsonTodo")
+       // print(String(decoding:jsonTodo, as:UTF8.self))
       } catch {
         print("Error: cannot create JSON from todo")
         return
@@ -151,7 +151,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
           print("Error: did not receive data")
           return
         }
-         print("responseData",String(decoding:responseData, as:UTF8.self))
+         //print("responseData",String(decoding:responseData, as:UTF8.self))
 
       }
       task.resume()

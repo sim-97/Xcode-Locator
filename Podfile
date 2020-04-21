@@ -13,6 +13,7 @@ pod 'Firebase'
 pod 'Firebase/Analytics'
 
 # Add the pod for Firebase Cloud Messaging
+pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'Firebase/Firestore'
 
@@ -22,6 +23,7 @@ pod 'Firebase/Firestore'
     # Pods for testing
 pod 'Firebase'
 # Add the Firebase pod for Google Analytics
+pod 'Firebase/Core'
 pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
 
@@ -33,6 +35,7 @@ pod 'Firebase/Messaging'
   target 'LocatorUITests' do
     # Pods for testing
 pod 'Firebase'
+pod 'Firebase/Core'
 # Add the Firebase pod for Google Analytics
 pod 'Firebase/Analytics'
 
