@@ -15,8 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+       
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         Messaging.messaging().shouldEstablishDirectChannel = true
     
         if #available(iOS 10.0, *) {
@@ -38,8 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-      Messaging.messaging().apnsToken = deviceToken
-        print(deviceToken)
+        Messaging.messaging().apnsToken=deviceToken
+        
     }
 
     // MARK: UISceneSession Lifecycle
@@ -54,7 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
+    
+    
 
 }
 
@@ -79,5 +82,59 @@ extension AppDelegate : MessagingDelegate {
 // Receive data message on iOS 10 devices.
 func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
     print("%@", remoteMessage.appData)
+    }
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+      print(fcmToken)
+        makePostCall(fcmToken)
+    }
+    
+    //POST Method
+    func makePostCall(_ token: String) {
+      let todosEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/NotificationController/AddDeviceToken"
+      guard let todosURL = URL(string: todosEndpoint) else {
+        print("Error: cannot create URL")
+        return
+      }
+      var todosUrlRequest = URLRequest(url: todosURL)
+      todosUrlRequest.httpMethod = "POST"
+        todosUrlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-type")
+      let newTodo: [String: String] = ["deviceId":"1234", "tokenId": token]
+      let jsonTodo: Data
+      do {
+        jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
+        todosUrlRequest.httpBody = jsonTodo
+       // print("JsonTodo")
+       print(String(decoding:jsonTodo, as:UTF8.self))
+      } catch {
+        print("Error: cannot create JSON from todo")
+        return
+      }
+
+      let session = URLSession.shared
+
+      let task = session.dataTask(with: todosUrlRequest) {
+        (data, response, error) in
+        guard error == nil else {
+          print("error calling POST on /todos/1")
+          print(error!)
+          return
+        }
+       
+        guard let responseData = data else {
+          print("Error: did not receive data")
+          return
+        }
+        print("responseData",String(decoding:responseData, as:UTF8.self))
+
+      }
+      task.resume()
+    }
+}
+import Foundation
+
+extension Data {
+    var hexString: String {
+        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
+        return hexString
     }
 }

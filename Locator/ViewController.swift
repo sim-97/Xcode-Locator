@@ -10,54 +10,77 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import Foundation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-
+    var infected = 0
+    let defaults = UserDefaults.standard
    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+    @IBOutlet weak var infectedButton: UIButton!
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if defaults.bool(forKey: "FirstLaunch")==true{
+            print("Second")
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                locationManager.startUpdatingLocation()
+                defaults.set(true, forKey: "FirstLaunch")
+            }
+        }else{
+            print("First")
+            performSegue(withIdentifier: "toTermsView", sender: nil)
+            defaults.set(true, forKey: "FirstLaunch")
+            
         }
+        
+        
+
+       
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        //print("locations = \(locValue.latitude)",",","\(locValue.longitude)")
         let locationstring = String(locValue.latitude)+","+String(locValue.longitude)
-        //print(type(of: locationstring), locationstring)
-        makePostCall()
+        makePostCall(location: locationstring)
+        
     }
-            
 
     
     @IBAction func updateDiagnosis(_ sender: Any) {
+       
         let dialogMessage = UIAlertController(title: "Confirm", message: "Would you like to update your diagnosis to positive?", preferredStyle: .alert)
         // Create OK button with action handler
                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                    print("Ok button tapped")
+                self.infected = 1
                 self.makePutCall()
+                self.infectedButton.isEnabled = false
+                Timer.scheduledTimer(timeInterval: 1209600, target: self, selector: #selector(ViewController.enableButton), userInfo: nil, repeats: false)
                     
                })
                
                // Create Cancel button with action handlder
                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                   print("Cancel button tapped")
+                self.infected = 0
                }
         //Add OK and Cancel button to dialog message
         dialogMessage.addAction(ok)
         dialogMessage.addAction(cancel)
         
+        
         // Present dialog message to user
         self.present(dialogMessage, animated: true, completion: nil)
         
     }
+    
+    @objc func enableButton() {
+        self.infectedButton.isEnabled = true
+        self.infected = 0
+    }
+    
     
     //GET Method
     func makeGetCall() {
@@ -116,7 +139,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       task.resume()
     }
     //POST Method
-    func makePostCall() {
+    func makePostCall(location:String) {
       let todosEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/GeoTrackerController/StoreUseLoction"
       guard let todosURL = URL(string: todosEndpoint) else {
         print("Error: cannot create URL")
@@ -125,7 +148,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       var todosUrlRequest = URLRequest(url: todosURL)
       todosUrlRequest.httpMethod = "POST"
         todosUrlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-type")
-      let newTodo: [String: String] = ["deviceid":"1234", "location": "test", "locationdate": "5-20-2020"]
+      let newTodo: [String: String] = ["deviceid":"1234", "location": location, "locationdate": "5-20-2020"]
       let jsonTodo: Data
       do {
         jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
@@ -171,7 +194,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       do {
         jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
         todosUrlRequest.httpBody = jsonTodo
-        print("JsonTodo")
+        //print("JsonTodo")
         print(String(decoding:jsonTodo, as:UTF8.self))
       } catch {
         print("Error: cannot create JSON from todo")
@@ -196,6 +219,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
       }
       task.resume()
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     
