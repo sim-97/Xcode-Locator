@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -90,6 +91,7 @@ func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
     
     //POST Method
     func makePostCall(_ token: String) {
+     guard let deviceid = UIDevice.current.identifierForVendor?.uuidString else { return }
       let todosEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/NotificationController/AddDeviceToken"
       guard let todosURL = URL(string: todosEndpoint) else {
         print("Error: cannot create URL")
@@ -98,7 +100,7 @@ func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
       var todosUrlRequest = URLRequest(url: todosURL)
       todosUrlRequest.httpMethod = "POST"
         todosUrlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-type")
-      let newTodo: [String: String] = ["deviceId":"1234", "tokenId": token]
+      let newTodo: [String: String] = ["deviceId":deviceid, "tokenId": token]
       let jsonTodo: Data
       do {
         jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
@@ -124,7 +126,7 @@ func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
           print("Error: did not receive data")
           return
         }
-        print("responseData",String(decoding:responseData, as:UTF8.self))
+        print("responseDatatoken",String(decoding:responseData, as:UTF8.self))
 
       }
       task.resume()

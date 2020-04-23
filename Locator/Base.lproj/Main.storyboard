@@ -15,17 +15,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Notify us if you have tested positive for Covid-19." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z46-kH-UNb">
+                                <rect key="frame" x="43" y="260" width="341" height="38"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="2rc-Kj-u9j"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stay Home. Stay Safe." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EG6-Rx-HVu">
+                                <rect key="frame" x="149" y="561" width="123" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Infection" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSb-Or-qyp">
-                                <rect key="frame" x="122" y="409" width="171" height="79"/>
-                                <color key="backgroundColor" red="0.20999589562416077" green="0.078556664288043976" blue="0.3812251091003418" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="122" y="333" width="171" height="171"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Update Diagnosis">
+                                <state key="normal" title="Report Infection">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" red="0.2130558491" green="0.066566668450000005" blue="0.3804179728" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="17"/>
+                                        <integer key="value" value="85"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -35,16 +54,23 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TSb-Or-qyp" secondAttribute="trailing" constant="121" id="6U3-km-yKa"/>
-                            <constraint firstItem="TSb-Or-qyp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="122" id="J97-Ju-eXq"/>
-                            <constraint firstItem="TSb-Or-qyp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="365" id="QWn-Qx-0H4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TSb-Or-qyp" secondAttribute="bottom" constant="374" id="wER-W1-AQt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EG6-Rx-HVu" secondAttribute="bottom" constant="287" id="4Tg-4e-AgB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TSb-Or-qyp" secondAttribute="trailing" constant="121" id="691-Mb-u6I"/>
+                            <constraint firstItem="z46-kH-UNb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="DMM-fT-h8C"/>
+                            <constraint firstItem="z46-kH-UNb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="216" id="DO3-g0-QMx"/>
+                            <constraint firstItem="EG6-Rx-HVu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="149" id="ROp-3z-CaV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EG6-Rx-HVu" secondAttribute="trailing" constant="142" id="SYZ-mI-oFn"/>
+                            <constraint firstItem="TSb-Or-qyp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="122" id="h12-Lq-aSv"/>
+                            <constraint firstItem="TSb-Or-qyp" firstAttribute="top" secondItem="z46-kH-UNb" secondAttribute="bottom" constant="35" id="mln-tg-1sx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="z46-kH-UNb" secondAttribute="trailing" constant="30" id="raN-7c-FeN"/>
+                            <constraint firstItem="EG6-Rx-HVu" firstAttribute="top" secondItem="TSb-Or-qyp" secondAttribute="bottom" constant="57" id="wHm-if-Fpv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="TLg-FU-BIx"/>
                     <connections>
                         <outlet property="infectedButton" destination="TSb-Or-qyp" id="61c-t9-M8d"/>
+                        <outlet property="instructions" destination="z46-kH-UNb" id="Z86-nM-Xgr"/>
                         <segue destination="jqt-RX-PAg" kind="presentation" identifier="toTermsView" id="1PP-7g-PzH"/>
                     </connections>
                 </viewController>
@@ -61,9 +87,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mU1-Ml-EWO">
-                                <rect key="frame" x="80" y="732" width="254" height="30"/>
+                                <rect key="frame" x="80" y="732" width="254" height="24"/>
                                 <color key="backgroundColor" red="0.2130558491" green="0.066566668450000005" blue="0.3804179728" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="I agree to the terms and conditions">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -76,19 +102,22 @@
                                     <action selector="acceptButtonTapped:" destination="jqt-RX-PAg" eventType="touchUpInside" id="IGX-Y5-utL"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0ac-cF-Obj">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ac-cF-Obj">
                                 <rect key="frame" x="4" y="8" width="394" height="704"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="394" id="D4E-f8-x3W"/>
                                     <constraint firstAttribute="height" constant="704" id="WMF-9e-fO6"/>
                                 </constraints>
-                                <mutableString key="text">MOBILE APP PRIVACY POLICY TEMPLATE
+                                <mutableString key="text">MOBILE APP PRIVACY POLICY
 
 COVID-19TRACKER
 Last updated [April 18, 2020]
 
-[BUSINESS ENTITY NAME] (“we” or “us” or “our”) respects the privacy of our users (“user” or “you”). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our mobile application (the “Application”).   Please read this Privacy Policy carefully.  IF YOU DO NOT AGREE WITH THE TERMS OF THIS PRIVACY POLICY, PLEASE DO NOT ACCESS THE APPLICATION. 
+Database Lab team (“we” or “us” or “our”) respects the privacy of our users (“user” or “you”). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our mobile application (the “Application”).   Please read this Privacy Policy carefully.  IF YOU DO NOT AGREE WITH THE TERMS OF THIS PRIVACY POLICY, PLEASE DO NOT ACCESS THE APPLICATION. 
 
 We reserve the right to make changes to this Privacy Policy at any time and for any reason.  We will alert you about any changes by updating the “Last updated” date of this Privacy Policy.  You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the Application after the date such revised Privacy Policy is posted.  
 
@@ -120,6 +149,7 @@ We use administrative, technical, and physical security measures to help protect
                         <constraints>
                             <constraint firstItem="mU1-Ml-EWO" firstAttribute="leading" secondItem="skB-4x-1eL" secondAttribute="leading" constant="80" id="AXI-U8-LoK"/>
                             <constraint firstItem="0ac-cF-Obj" firstAttribute="top" secondItem="skB-4x-1eL" secondAttribute="top" constant="8" id="Iqe-tH-IDu"/>
+                            <constraint firstItem="skB-4x-1eL" firstAttribute="bottom" secondItem="mU1-Ml-EWO" secondAttribute="bottom" constant="52" id="Q5Z-Ic-WVJ"/>
                             <constraint firstItem="0ac-cF-Obj" firstAttribute="leading" secondItem="skB-4x-1eL" secondAttribute="leading" constant="4" id="b30-mT-fCS"/>
                             <constraint firstItem="skB-4x-1eL" firstAttribute="trailing" secondItem="mU1-Ml-EWO" secondAttribute="trailing" constant="80" id="fYo-IJ-wb3"/>
                             <constraint firstItem="mU1-Ml-EWO" firstAttribute="top" secondItem="0ac-cF-Obj" secondAttribute="bottom" constant="20" id="lxE-vn-UHK"/>

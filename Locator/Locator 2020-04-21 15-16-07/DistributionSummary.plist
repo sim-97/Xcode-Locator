@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Locator.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+				<key>dateExpires</key>
+				<string>2021-04-18</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>FBLPromises.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>GoogleUtilities.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>absl.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>grpc.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>grpcpp.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>leveldb.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>nanopb.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>openssl_grpc.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>F3197B37267C262CD5279A9B9FFD1967080ECE7F</string>
+						<key>dateExpires</key>
+						<string>2021-04-18</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>protobuf.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VL3YDLWQR9</string>
+						<key>name</key>
+						<string>Simran Bhattarai</string>
+					</dict>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>VL3YDLWQR9.sim.Locator</string>
+				<key>aps-environment</key>
+				<string>development</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>VL3YDLWQR9</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>Locator.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>1eae55fa-16b1-4263-b9a6-b9677b6f0a1a</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: sim.Locator</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>VL3YDLWQR9</string>
+				<key>name</key>
+				<string>Simran Bhattarai</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

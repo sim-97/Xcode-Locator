@@ -8,15 +8,18 @@
 
 import Foundation
 import UIKit
-
+import CoreLocation
 
 class TermsController: UIViewController {
+    //let locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isModalInPresentation = true
         
     }
     
     @IBAction func acceptButtonTapped(_ sender: Any) {
+        //locationManager.requestAlwaysAuthorization()
         UserDefaults.standard.set(true, forKey: "termsAccepted")
         self.dismiss(animated: true, completion: nil)
     }
