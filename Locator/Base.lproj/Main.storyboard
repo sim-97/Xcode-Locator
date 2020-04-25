@@ -86,32 +86,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mU1-Ml-EWO">
-                                <rect key="frame" x="80" y="732" width="254" height="24"/>
-                                <color key="backgroundColor" red="0.2130558491" green="0.066566668450000005" blue="0.3804179728" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                <state key="normal" title="I agree to the terms and conditions">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="acceptButtonTapped:" destination="jqt-RX-PAg" eventType="touchUpInside" id="IGX-Y5-utL"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ac-cF-Obj">
-                                <rect key="frame" x="4" y="8" width="394" height="704"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ac-cF-Obj">
+                                <rect key="frame" x="15" y="8" width="383" height="686"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="394" id="D4E-f8-x3W"/>
-                                    <constraint firstAttribute="height" constant="704" id="WMF-9e-fO6"/>
-                                </constraints>
                                 <mutableString key="text">MOBILE APP PRIVACY POLICY
 
 COVID-19TRACKER
@@ -144,15 +124,55 @@ We use administrative, technical, and physical security measures to help protect
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPU-d0-X32">
+                                <rect key="frame" x="20" y="714" width="170" height="50"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Jpe-EK-GRK"/>
+                                    <constraint firstAttribute="width" constant="170" id="ata-Pe-4KN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <state key="normal" title="Disagree and Exit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="disagreeButtonTapped:" destination="jqt-RX-PAg" eventType="touchUpInside" id="YJK-Py-Nsu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mU1-Ml-EWO">
+                                <rect key="frame" x="224" y="714" width="170" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <state key="normal" title="Agree and Proceed">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="acceptButtonTapped:" destination="jqt-RX-PAg" eventType="touchUpInside" id="IGX-Y5-utL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="mU1-Ml-EWO" firstAttribute="leading" secondItem="skB-4x-1eL" secondAttribute="leading" constant="80" id="AXI-U8-LoK"/>
-                            <constraint firstItem="0ac-cF-Obj" firstAttribute="top" secondItem="skB-4x-1eL" secondAttribute="top" constant="8" id="Iqe-tH-IDu"/>
-                            <constraint firstItem="skB-4x-1eL" firstAttribute="bottom" secondItem="mU1-Ml-EWO" secondAttribute="bottom" constant="52" id="Q5Z-Ic-WVJ"/>
-                            <constraint firstItem="0ac-cF-Obj" firstAttribute="leading" secondItem="skB-4x-1eL" secondAttribute="leading" constant="4" id="b30-mT-fCS"/>
-                            <constraint firstItem="skB-4x-1eL" firstAttribute="trailing" secondItem="mU1-Ml-EWO" secondAttribute="trailing" constant="80" id="fYo-IJ-wb3"/>
-                            <constraint firstItem="mU1-Ml-EWO" firstAttribute="top" secondItem="0ac-cF-Obj" secondAttribute="bottom" constant="20" id="lxE-vn-UHK"/>
+                            <constraint firstItem="0ac-cF-Obj" firstAttribute="centerX" secondItem="lA2-lk-7QV" secondAttribute="centerX" id="LeV-Mq-oi8"/>
+                            <constraint firstItem="DPU-d0-X32" firstAttribute="baseline" secondItem="mU1-Ml-EWO" secondAttribute="firstBaseline" id="Pdu-kh-grc"/>
+                            <constraint firstItem="DPU-d0-X32" firstAttribute="leading" secondItem="lA2-lk-7QV" secondAttribute="leadingMargin" id="bpP-u1-uSb"/>
+                            <constraint firstItem="0ac-cF-Obj" firstAttribute="top" secondItem="skB-4x-1eL" secondAttribute="top" constant="8" id="oTe-Ap-uY4"/>
+                            <constraint firstItem="mU1-Ml-EWO" firstAttribute="leading" secondItem="DPU-d0-X32" secondAttribute="trailing" constant="34" id="q1F-Hh-sQ0"/>
+                            <constraint firstItem="0ac-cF-Obj" firstAttribute="leading" secondItem="skB-4x-1eL" secondAttribute="leading" constant="15" id="q1S-S0-ibB"/>
+                            <constraint firstItem="DPU-d0-X32" firstAttribute="top" secondItem="0ac-cF-Obj" secondAttribute="bottom" constant="20" id="siz-rD-7RL"/>
+                            <constraint firstItem="mU1-Ml-EWO" firstAttribute="trailing" secondItem="lA2-lk-7QV" secondAttribute="trailingMargin" id="uGw-Ds-gDs"/>
+                            <constraint firstItem="DPU-d0-X32" firstAttribute="top" secondItem="mU1-Ml-EWO" secondAttribute="top" id="vX0-rD-WuF"/>
+                            <constraint firstItem="skB-4x-1eL" firstAttribute="bottom" secondItem="DPU-d0-X32" secondAttribute="bottom" constant="44" id="yct-Nr-SCV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="skB-4x-1eL"/>
                     </view>

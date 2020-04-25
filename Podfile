@@ -14,7 +14,7 @@ pod 'Firebase/Analytics'
 
 # Add the pod for Firebase Cloud Messaging
 pod 'Firebase/Core'
-pod 'Firebase/Messaging'
+pod 'FirebaseMessaging'
 pod 'Firebase/Firestore'
 
 
@@ -28,7 +28,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
 
 # Add the pod for Firebase Cloud Messaging
-pod 'Firebase/Messaging'
+pod 'FirebaseMessaging'
 
   end
 
@@ -40,7 +40,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Analytics'
 
 # Add the pod for Firebase Cloud Messaging
-pod 'Firebase/Messaging'
+pod 'FirebaseMessaging'
 pod 'Firebase/Firestore'
  end
 

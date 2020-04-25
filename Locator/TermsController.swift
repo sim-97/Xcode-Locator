@@ -18,6 +18,9 @@ class TermsController: UIViewController {
         
     }
     
+    @IBAction func disagreeButtonTapped(_ sender: Any) {
+        exit(0)
+    }
     @IBAction func acceptButtonTapped(_ sender: Any) {
         //locationManager.requestAlwaysAuthorization()
         UserDefaults.standard.set(true, forKey: "termsAccepted")

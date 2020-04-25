@@ -23,7 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if defaults.bool(forKey: "FirstLaunch")==true{
+        if defaults.bool(forKey: "termsAccepted")==true{
             print("Second")
             if CLLocationManager.authorizationStatus() != .authorizedAlways     // Check authorization for location tracking
             {
@@ -32,24 +32,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                 locationManager.startUpdatingLocation()
-                defaults.set(true, forKey: "FirstLaunch")
+                //defaults.set(true, forKey: "FirstLaunch")
                 
             }
         }else{
             print("First")
             performSegue(withIdentifier: "toTermsView", sender: nil)
-            defaults.set(true, forKey: "FirstLaunch")
+            //defaults.set(true, forKey: "FirstLaunch")
             locationManager.requestAlwaysAuthorization()
             if CLLocationManager.authorizationStatus() != .authorizedAlways
             {
                 locationManager.requestAlwaysAuthorization()
-            } else {
+            }
+            if CLLocationManager.authorizationStatus() == .authorizedAlways{
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                 locationManager.startUpdatingLocation()
             }
-            let installed = Date()
-            let scheduledupdate = Calendar.current.date(byAdding: .hour,value:1, to: installed)
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        
+            let timerightnow = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM-d-YYYY HH:mm"
+            
+            let installed = formatter.string(from: timerightnow)
+            
+            // get the date time String from the date object
+            //print("Installed:", installed)
+            let scheduledupdate = Calendar.current.date(byAdding: .minute,value:1, to: formatter.date(from: installed) ?? Date())
+            //print("Next update:", scheduledupdate as Any)
             defaults.set(scheduledupdate, forKey: "NextUpdate")
             defaults.set("", forKey: "LocationArray")
             defaults.set("", forKey: "timeofLocation")
@@ -93,23 +106,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM-d-YYYY HH:mm"
         var dateArr = defaults.object(forKey: "timeofLocation") as! String
-        dateArr.append(",")
         if dateArr == "" {
             dateArr.append(formatter.string(from: timerightnow))
         }else{
             dateArr.append(",")
             dateArr.append(formatter.string(from: timerightnow))
         }
-        
+        defaults.set(dateArr, forKey: "timeofLocation")
         let scheduledupdate = defaults.object(forKey: "NextUpdate") as! Date
+        //print("Date", scheduledupdate as Any)
         if timerightnow >= scheduledupdate{
             makePostCall()
             let nextupdate = Calendar.current.date(byAdding: .hour,value:1, to: timerightnow)
+            //print("Next Update:", nextupdate as Any)
             defaults.set(nextupdate, forKey: "NextUpdate")
             defaults.set("", forKey: "LocationArray")
             defaults.set("", forKey: "timeofLocation")
         }else{
             //do nothing
+            //print("Not yet")
         }
             
         
@@ -208,7 +223,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         defaults.set("", forKey: "LocationArray")
         defaults.set("", forKey: "timeofLocation")
         guard let uuid = UIDevice.current.identifierForVendor?.uuidString else { return }
-        //print(uuid)
+        print("dateArr:", dateArr)
       let todosEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/GeoTrackerController/StoreUseLoction"
       guard let todosURL = URL(string: todosEndpoint) else {
         print("Error: cannot create URL")
@@ -305,6 +320,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
 }
-
 
 

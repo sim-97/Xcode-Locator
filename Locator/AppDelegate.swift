@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import UserNotifications
-import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,33 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-       
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        Messaging.messaging().delegate = self
-        Messaging.messaging().shouldEstablishDirectChannel = true
-    
-        if #available(iOS 10.0, *) {
-          // For iOS 10 display notification (sent via APNS)
-          UNUserNotificationCenter.current().delegate = self
-
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: {_, _ in })
-        } else {
-          let settings: UIUserNotificationSettings =
-          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-          application.registerUserNotificationSettings(settings)
-        }
-
-        application.registerForRemoteNotifications()
+        let pushManager = PushNotificationManager(userID: "currently_logged_in_user_id")
+           pushManager.registerForPushNotifications()
+           
+       
         return true
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken=deviceToken
-        
     }
 
     // MARK: UISceneSession Lifecycle
@@ -58,85 +37,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    
+        func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+            Messaging.messaging().setAPNSToken(deviceToken, type: MessagingAPNSTokenType.unknown)
+            Messaging.messaging().apnsToken=deviceToken
+        }
+
 
 }
 
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
 
-    // Receive displayed notifications for iOS 10 devices.
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
-
-        // Print full message.
-        print("%@", userInfo)
-
-    }
-
-}
-
-extension AppDelegate : MessagingDelegate {
-// Receive data message on iOS 10 devices.
-func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
-    print("%@", remoteMessage.appData)
-    }
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-      print(fcmToken)
-        makePostCall(fcmToken)
-    }
+//    // Receive displayed notifications for iOS 10 devices.
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        let userInfo = notification.request.content.userInfo
+//        // Print message ID.
+//        print("Message ID: \(userInfo["gcm.message_id"]!)")
+//
+//        // Print full message.
+//        print("%@", userInfo)
+//
+//    }
     
-    //POST Method
-    func makePostCall(_ token: String) {
-     guard let deviceid = UIDevice.current.identifierForVendor?.uuidString else { return }
-      let todosEndpoint: String = "http://www.aisarhan.com/CoronaAPI/api/NotificationController/AddDeviceToken"
-      guard let todosURL = URL(string: todosEndpoint) else {
-        print("Error: cannot create URL")
-        return
-      }
-      var todosUrlRequest = URLRequest(url: todosURL)
-      todosUrlRequest.httpMethod = "POST"
-        todosUrlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-type")
-      let newTodo: [String: String] = ["deviceId":deviceid, "tokenId": token]
-      let jsonTodo: Data
-      do {
-        jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
-        todosUrlRequest.httpBody = jsonTodo
-       // print("JsonTodo")
-       print(String(decoding:jsonTodo, as:UTF8.self))
-      } catch {
-        print("Error: cannot create JSON from todo")
-        return
-      }
+     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let content = notification.request.content
+        // Process notification content
+        print("\(content.userInfo)")
+        completionHandler([.alert, .sound]) // Display notification Banner
 
-      let session = URLSession.shared
-
-      let task = session.dataTask(with: todosUrlRequest) {
-        (data, response, error) in
-        guard error == nil else {
-          print("error calling POST on /todos/1")
-          print(error!)
-          return
-        }
-       
-        guard let responseData = data else {
-          print("Error: did not receive data")
-          return
-        }
-        print("responseDatatoken",String(decoding:responseData, as:UTF8.self))
-
-      }
-      task.resume()
     }
-}
-import Foundation
 
-extension Data {
-    var hexString: String {
-        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
-        return hexString
-    }
 }
